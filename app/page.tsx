@@ -1,11 +1,24 @@
+// File: app/page.tsx
+
 import AcmeLogo from "@/app/ui/acme-logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import styles from "@/app/ui/home.module.css";
 import { lusitana } from "@/app/ui/fonts";
 import Image from "next/image";
+import { neon } from "@neondatabase/serverless";
 
 export default function Page() {
+   async function create(formData: FormData) {
+      "use server";
+      const sql = neon(`${process.env.DATABASE_URL}`);
+      const comment = formData.get("comment");
+
+      if (typeof comment === "string" && comment.trim() !== "") {
+         await sql`INSERT INTO comments (comment) VALUES (${comment})`;
+      }
+   }
+
    return (
       <main className="flex min-h-screen flex-col p-6">
          {/* <div className={styles.shape} /> */}
@@ -29,9 +42,26 @@ export default function Page() {
                >
                   <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
                </Link>
+
+               {/* ✍️ Add the form here */}
+               <form action={create} className="flex flex-col gap-2">
+                  <input
+                     type="text"
+                     name="comment"
+                     placeholder="Write a comment"
+                     className="border border-gray-300 rounded-md p-2 text-sm"
+                     required
+                  />
+                  <button
+                     type="submit"
+                     className="bg-blue-600 text-white rounded-md px-4 py-2 text-sm hover:bg-blue-500"
+                  >
+                     Submit Comment
+                  </button>
+               </form>
             </div>
+
             <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-               {/* Add Hero Images Here */}
                <Image
                   src="/hero-desktop.png"
                   width={1000}
