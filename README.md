@@ -1,20 +1,27 @@
-# Next.js Dashboard - A Learning Journey
+# Next.js App Router Fundamentals - Vercel Course Project
 
-This project is a hands-on application I built while following the official [Vercel Next.js tutorial](https://nextjs.org/learn). It's a full-stack dashboard that includes features for managing customers and invoices.
+This repository contains the completed project for the "Next.js App Router Fundamentals" course by Vercel. This hands-on tutorial provided a comprehensive introduction to building a full-stack application with Next.js.
 
-Building this dashboard was a fantastic way to get practical experience with some of the powerful features in Next.js. It's not just a demo; it's a testament to my learning process and my ability to grasp and apply new technologies.
+The course covered a range of essential topics, from setting up the project to deploying a production-ready application. This project serves as a practical demonstration of the concepts and skills I learned throughout the course.
 
-## What I Learned
+## Course Modules & Key Concepts Covered
 
-Through this project, I gained practical experience with:
-
-*   **Next.js App Router:** Structuring the application with the latest routing paradigm.
-*   **Server-Side Rendering (SSR):** Fetching and rendering data on the server for improved performance and SEO.
-*   **Data Fetching & Mutations:** Implementing `create`, `update`, and `delete` operations for invoices.
-*   **Search & Pagination:** Building dynamic and user-friendly ways to navigate data.
-*   **Authentication:** Securing routes and implementing login functionality with NextAuth.js.
-*   **Database Integration:** Connecting to a PostgreSQL database (using Neon) to persist data.
-*   **Styling with Tailwind CSS:** Creating a modern, responsive UI from scratch.
+*   **Getting Started:** Initializing a new Next.js project and understanding the file structure.
+*   **CSS Styling:** Using Tailwind CSS for modern and responsive design.
+*   **Optimizing Fonts and Images:** Implementing custom fonts and optimizing images for performance.
+*   **Creating Layouts and Pages:** Building UI with the Next.js App Router.
+*   **Navigating Between Pages:** Implementing navigation with the `<Link>` component.
+*   **Setting up a Database:** Connecting to a PostgreSQL database with Vercel Postgres and Neon.
+*   **Fetching Data:** Using Server-Side Rendering (SSR) to fetch and display data.
+*   **Static and Dynamic Rendering:** Understanding the difference and when to use each.
+*   **Streaming:** Improving user experience with loading UI.
+*   **Partial Prerendering (PPR):** Leveraging Next.js's experimental PPR feature.
+*   **Adding Search and Pagination:** Implementing dynamic filtering and pagination.
+*   **Mutating Data:** Using Server Actions to create, update, and delete invoices.
+*   **Error Handling:** Adding error handling for data operations.
+*   **Improving Accessibility:** Implementing best practices for accessibility.
+*   **Adding Authentication:** Securing the application with NextAuth.js.
+*   **Adding Metadata:** Improving SEO with metadata.
 
 ## Tech Stack
 
