@@ -5,12 +5,14 @@ import {
    AtSymbolIcon,
    KeyIcon,
    ExclamationCircleIcon,
+   ClipboardIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "./button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginForm() {
    const searchParams = useSearchParams();
@@ -19,6 +21,14 @@ export default function LoginForm() {
       authenticate,
       undefined
    );
+   const [copied, setCopied] = useState("");
+
+   const handleCopy = (text: string, field: string) => {
+      navigator.clipboard.writeText(text);
+      setCopied(field);
+      setTimeout(() => setCopied(""), 2000);
+   };
+
    return (
       <form action={formAction} className="space-y-3">
          <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -81,14 +91,40 @@ export default function LoginForm() {
                )}
             </div>
          </div>
-         <div className="text-center">
-            <p className="text-xs text-gray-500">
-               Test credentials:
-               <br />
-               <strong>Email:</strong> user@nextmail.com
-               <br />
-               <strong>Password:</strong> 123456
-            </p>
+         <div className="text-center text-xs text-gray-500">
+            <p className="mb-2">Test credentials:</p>
+            <div className="flex items-center justify-center space-x-2">
+               <span>
+                  <strong>Email:</strong> user@nextmail.com
+               </span>
+               <button
+                  type="button"
+                  onClick={() => handleCopy("user@nextmail.com", "email")}
+                  className="rounded-md p-1 hover:bg-gray-100"
+               >
+                  {copied === "email" ? (
+                     <span className="text-xs text-green-600">Copied!</span>
+                  ) : (
+                     <ClipboardIcon className="h-4 w-4 text-gray-500" />
+                  )}
+               </button>
+            </div>
+            <div className="flex items-center justify-center space-x-2">
+               <span>
+                  <strong>Password:</strong> 123456
+               </span>
+               <button
+                  type="button"
+                  onClick={() => handleCopy("123456", "password")}
+                  className="rounded-md p-1 hover:bg-gray-100"
+               >
+                  {copied === "password" ? (
+                     <span className="text-xs text-green-600">Copied!</span>
+                  ) : (
+                     <ClipboardIcon className="h-4 w-4 text-gray-500" />
+                  )}
+               </button>
+            </div>
          </div>
       </form>
    );
