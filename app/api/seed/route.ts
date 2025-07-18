@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { neon } from "@neondatabase/serverless";
+import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 import {
    invoices,
    customers,
@@ -12,7 +12,10 @@ console.log("POSTGRES_URL:", process.env.POSTGRES_URL);
 // Neon HTTP client
 const sql = neon(process.env.POSTGRES_URL!);
 
-async function seedUsers(sql: any) {
+// Type for the Neon SQL client
+type NeonSql = NeonQueryFunction<false, false>;
+
+async function seedUsers(sql: NeonSql) {
    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
    await sql`
     CREATE TABLE IF NOT EXISTS users (
@@ -37,7 +40,7 @@ async function seedUsers(sql: any) {
    return insertedUsers;
 }
 
-async function seedInvoices(sql: any) {
+async function seedInvoices(sql: NeonSql) {
    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
    await sql`
     CREATE TABLE IF NOT EXISTS invoices (
@@ -62,7 +65,7 @@ async function seedInvoices(sql: any) {
    return insertedInvoices;
 }
 
-async function seedCustomers(sql: any) {
+async function seedCustomers(sql: NeonSql) {
    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
    await sql`
     CREATE TABLE IF NOT EXISTS customers (
@@ -86,7 +89,7 @@ async function seedCustomers(sql: any) {
    return insertedCustomers;
 }
 
-async function seedRevenue(sql: any) {
+async function seedRevenue(sql: NeonSql) {
    await sql`
     CREATE TABLE IF NOT EXISTS revenue (
       month VARCHAR(4) NOT NULL UNIQUE,
