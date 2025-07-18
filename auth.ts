@@ -7,7 +7,6 @@ import bcrypt from "bcrypt";
 import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.POSTGRES_URL!);
-// const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 async function getUser(email: string): Promise<User | undefined> {
    try {
