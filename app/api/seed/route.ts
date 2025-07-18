@@ -1,6 +1,11 @@
 import bcrypt from "bcrypt";
 import { neon } from "@neondatabase/serverless";
-import { invoices, customers, revenue, users } from "../lib/placeholder-data";
+import {
+   invoices,
+   customers,
+   revenue,
+   users,
+} from "@/app/lib/placeholder-data";
 
 console.log("POSTGRES_URL:", process.env.POSTGRES_URL);
 
